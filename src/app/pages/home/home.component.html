@@ -1,0 +1,65 @@
+<div *ngIf="showFormulario">
+    <form [formGroup]="form" (ngSubmit)="crear()">
+        <ul>
+            <li>
+                <label>Titulo</label>
+                <input formControlName="titulo" type="text" required="true">
+                <div *ngIf="titulo.invalid" class="alert alert-danger">
+                    <div *ngIf="titulo.errors.required" class="requerido">
+                        Se requiere titulo
+                    </div>
+                </div>
+
+                <label>Estado</label>
+                <select formControlName="estado" type="select">
+                    <option value="0">Seleccione</option>
+                    <option value="1">Iniciado</option>
+                    <option value="2">En proceso</option>
+                    <option value="3">Terminada</option>
+                </select>
+            </li>
+
+            <li>
+                <button type="submit" [disabled]="titulo.invalid && estado.invalid" >Crear</button>
+                <button type="button" (click)="cancelar()">Cancelar</button>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<div *ngIf="showTarea" id="tarea">
+    <tr>
+        <th class="lista">Tareas iniciadas</th>
+        <th class="lista">Tareas en proceso</th>
+        <th id="termindas">Tareas terminadas</th>
+    </tr>
+    <tr>
+        <th><li *ngFor="let item of listaInicio"> <button class="bInicio" (click)="editar(item)"> {{item}} </button> <button type="button" (click)="eliminar(item)" class="eliminar"> x</button> </li></th>
+        <th><li *ngFor="let item of listaProceso"><button class="bProceso">{{item}} </button></li></th>
+        <th><li *ngFor="let item of listaTerminado"><button class="bTerminado">{{item}}</button></li></th>
+    </tr>
+   
+
+    <button type="button" (click)="adicionar()">Adicionar</button>
+
+</div>
+
+<div id="editar" *ngIf="showEditar">
+    <form [formGroup]="form" (ngSubmit)="actualizar()">
+        <ul>
+            <li>
+                <label>Titulo</label>
+                <input formControlName="titulo" type="text" required>
+                <div *ngIf="titulo.invalid" class="alert alert-danger">
+                    <div *ngIf="titulo.errors.required" class="requerido">
+                        Se requiere titulo
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <button type="submit" [disabled]="titulo.invalid" [disabled]="estado.invalid">Actualizar</button>
+            </li>
+        </ul>
+    </form>
+</div>

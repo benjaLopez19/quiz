@@ -1,0 +1,38 @@
+ul li{
+    text-align: center;
+    display: inline-block;
+    margin:5px;
+}
+
+.nombresIconos{
+    text-align: center;
+    margin-left: 6%;
+    margin-top:-15px;
+    font-size: 14px;
+}
+
+.semaforo{
+    text-align: left;
+    font-size: 40px;
+    padding-right: 22%;
+}
+
+.fas.fa-circle{
+    margin: 0px 50px 0px 0px;
+    display: inline-block;
+}
+
+#inicio{
+    color: red;
+    font-size: 20px;
+}
+
+#proceso{
+    color: yellow;
+    font-size: 20px;
+}
+
+#termino{
+    color: green;
+    font-size: 20px;
+}
