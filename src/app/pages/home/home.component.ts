@@ -12,9 +12,9 @@ export class HomeComponent implements OnInit {
   titulo:AbstractControl;
   estado:AbstractControl;
 
-  showTarea: boolean;
+  showTarea: boolean = false;
   showFormulario: boolean = true;
-  showEditar: boolean;
+  showEditar: boolean = false;
 
   listaInicio:Array<string>=[];
   listaProceso:Array<string>=[];
@@ -90,11 +90,28 @@ export class HomeComponent implements OnInit {
 
   actualizar(){
     console.log("actualizar "+this.auxEditar);
-    this.listaInicio.forEach((element,index)=>{
-      if(element==this.auxEditar){
-        this.listaInicio[index] = this.titulo.value;
-      }
-    });
+    if(this.estado.value != 1){
+      this.listaInicio.forEach((element,index)=>{
+        if(element==this.auxEditar){
+          this.listaInicio.splice(index,1);
+        }
+        if(this.estado.value == 2 ){
+          this.listaProceso.push(this.titulo.value);
+          console.log(this.listaProceso);
+        }
+        if(this.estado.value == 3){
+          this.listaTerminado.push(this.titulo.value);
+          console.log(this.listaTerminado);
+        }
+      });
+    }
+    else{
+      this.listaInicio.forEach((element,index)=>{
+        if(element==this.auxEditar){
+          this.listaInicio[index] = this.titulo.value;
+        }
+      });
+    }
     this.showTarea=true;
     this.showEditar=false;
   }
